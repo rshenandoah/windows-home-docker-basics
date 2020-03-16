@@ -5,8 +5,89 @@
 |Home_Icon|_
 `Learning Center Home <http://learning.cyverse.org/>`_
 
-**QUICKSTART NAME**
+**Windows Home Quickstart**
 ===================
+Overview
+----
+The Windows 10 Home operating system (OS) has some subtle differences from the Windows 10 Pro OS that present a stumbling block for setting up virtual machines (VM) and accessing platforms like Docker that support open and reproducible science. Most tutorials and guides for setting up VMs for Windows assume the user is using Windows Pro without making the distinction between the two systems clear or directly linking to alternative guides for Windows Home leaving Home users without sufficient information to quickly determine why their systems are not functioning when they followed the instructions provided. Documentation for Windows Home is buried within the documentatation for platforms such as Docker and not linked to on the main instalation pages. 
+
+*This guide is written and tested for Windows 10. If working with an earlier version of Windows, double check with Microsoft documentation as these instructions may differ.*
+
+Objectives
+----
+* Enable virtualization on Windows 10 Home OS
+* Install Docker Toolbox to connect to Docker via the Toolbox app command line interface or from the Windows Powershell
+* Activate Windows Subsystem for Linux to natively run Linux on Windows Home OS
+
+
+
+Activities
+----
+**1. Enable virtualization on Windows 10 Home OS**
+
+Windows Home OS defaults to having virtualization disabled. To work with any VM system in this OS the first step is to enable virtualization. 
+
+**1.1 Check status of virtualization** 
+
+Open Task Manager by pressing the Ctrl+Shift+Esc key together at the same time and go to the "Performance" tab. On the bottom right, look for 'Virtualization'. Next to that, it will show either 'Enabled' or 'Disabled'. If 'Disabled' continue on with these instructions, if 'Enabled' skip to part 2.
+
+**1.2 Enable virtualization** 
+
+In the Windows search box, search for and open “Change advanced startup options”. The next few steps will require a reboot of your computer. At this point, consider sending a link to this tutorial to a different device or make note of the rest of this step. Save any open documents and choose **Restart Now**. 
+
+Your computer will reboot to a blue “Choose an option” screen. Select **Troubleshoot**.
+
+Select **Advanced options**
+
+Select **UEFI Firmware Settings**
+
+Click **restart**. This reboot will automatically launch the Setup Utility. 
+
+Arrow over to the "Configuration" tab. Arrow down to 'Intel Virtual Technology' select it and arrow down and press enter to enable it. Save and exit.
+
+You can now install software supporting VMs and run VMs on your Windows Home OS.
+
+
+**2. Install Docker Toolbox**
+
+Docker Desktop, the current version of Docker is not compatable with Windows Home. Docker Toolbox continues to be supported for older Windows OS and Windows 10 Home.
+
+Follow the instructions for installing `Docker Toolbox <://docs.docker.com/toolbox/toolbox_install_windows/>`_ provided by Docker. 
+
+**2.1 Test Docker commands in Windows Powershell**
+
+With Docker Toolbox installed and running correctly, you have the option to engage with Docker via the Docker Quickstart Terminal as shown in the Docker tutorial linked above or from Windows Powershell. In Powershell you can use all the Docker commands the same as you would in any other command line interface. Try 
+.. code-block:: bash
+  $ docker run hello-world
+	
+
+**3. Windows Subsystem for Linux**
+
+Windows Subsystem for Linux (WSL) is a compatibility layer for running Linux binary executables natively on Windows 10. This may be useful for other open science applications.
+
+**3.1 Enable WSL**
+
+Open Powershell as administrator and run
+.. code-block:: bash
+  $ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-Linux
+
+**3.2 Install Linux**
+
+Install your favorite Linux distribution from the Windows App Store, another download source, or if this is your first experience `read some reviews and chose a flavor <https://itsfoss.com/best-linux-beginners/>`_. 
+
+Running Docker via Linux on WSL requires additional set up and configuration. For ease of access, users are advised to access Docker via Docker Toolbox or the Powershell instead. 
+
+
+
+
+
+Review
+----
+You have now enabled virtualization to support Docker and other VM dependent systems, installed Docker Toolbox, tested Docker commands on Powershell, and activated WSL to run Linux on your Windows Home OS.
+
+
+Lets do science!
+
 
 ..
     #### Comment: Use short, imperative titles e.g. Upload and share data, uploading and
